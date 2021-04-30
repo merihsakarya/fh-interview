@@ -1,0 +1,3 @@
+interface FxModel {
+    merchant: FxMerchantModel;
+}

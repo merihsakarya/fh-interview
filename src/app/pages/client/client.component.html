@@ -1,0 +1,43 @@
+<div nz-row class="back-button-container">
+    <div nz-col>
+        <button class="back-button" nz-button nzType="default" [routerLink]="['/transactions']">
+            <i nz-icon nzType="left"></i> Back
+        </button>
+    </div>
+</div>
+
+<nz-divider nzText="Client Information"></nz-divider>
+
+<nz-spin *ngIf="clientLoading" [nzSpinning]="clientLoading"></nz-spin>
+
+<ng-container *ngIf="!clientLoading">
+    <nz-descriptions nzTitle="Customer Info">
+        <nz-descriptions-item nzTitle="Number">{{ client?.customerInfo?.number }}</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Email">{{ client?.customerInfo?.email }}</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Gender">{{ client?.customerInfo?.gender }}</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Birth Date">{{ client?.customerInfo?.birthday | date:'dd/MM/yyyy' }}</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Created Date">{{ client?.customerInfo?.created_at | date:'dd/MM/yyyy' }}</nz-descriptions-item>
+    </nz-descriptions>
+
+    <nz-descriptions nzTitle="Billing Address">
+        <nz-descriptions-item nzTitle="Name">
+            {{ client?.customerInfo?.billingTitle }} {{ client?.customerInfo?.billingFirstName }} {{ client?.customerInfo?.billingLastName }}
+        </nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Company">{{ client?.customerInfo?.billingCompany }}</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Phone">{{ client?.customerInfo?.billingPhone }}</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="City">{{ client?.customerInfo?.billingCity }}</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Country">{{ client?.customerInfo?.billingCountry }}</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Post Code">{{ client?.customerInfo?.billingPostcode}}</nz-descriptions-item>
+    </nz-descriptions>
+
+    <nz-descriptions nzTitle="Shipping Address">
+        <nz-descriptions-item nzTitle="Name">
+            {{ client?.customerInfo?.shippingTitle }} {{ client?.customerInfo?.shippingFirstName }} {{ client?.customerInfo?.shippingLastName }}
+        </nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Company">{{ client?.customerInfo?.shippingCompany }}</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Phone">{{ client?.customerInfo?.shippingPhone }}</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="City">{{ client?.customerInfo?.shippingCity }}</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Country">{{ client?.customerInfo?.shippingCountry }}</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Post Code">{{ client?.customerInfo?.shippingPostcode}}</nz-descriptions-item>
+    </nz-descriptions>
+</ng-container>

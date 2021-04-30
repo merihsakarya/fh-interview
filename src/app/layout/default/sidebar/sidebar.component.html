@@ -1,0 +1,22 @@
+<div class="sidebar-logo">
+    <a routerLink="/">
+        <img src="assets/img/logo-sm.png" alt="logo">
+        <h1>Financial House</h1>
+    </a>
+</div>
+<ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+    <li nz-menu-item nzMatchRouter nz-tooltip [nzTitle]="isCollapsed ? 'Dashboard' : ''" nzTooltipPlacement="right"
+        routerLink="/dashboard">
+        <i nz-icon nzType="dashboard"></i> <span>Dashboard</span>
+    </li>
+
+    <li nz-menu-item nzMatchRouter nz-tooltip [nzTitle]="isCollapsed ? 'Transactions' : ''" nzTooltipPlacement="right"
+        routerLink="/transactions">
+        <i nz-icon nzType="swap"></i> <span>Transactions</span>
+    </li>
+
+    <li nz-menu-item nzMatchRouter nz-tooltip [nzTitle]="isCollapsed ? 'Reports' : ''" nzTooltipPlacement="right"
+        routerLink="/reports">
+        <i nz-icon nzType="snippets"></i> <span>Reports</span>
+    </li>
+</ul>

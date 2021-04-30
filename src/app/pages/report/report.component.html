@@ -1,0 +1,45 @@
+<form nz-form #reportForm="ngForm">
+    <div nz-row nzGutter="8" class="search-container">
+        <div nz-col nzSpan="6">
+            <nz-form-control>
+                <nz-range-picker [nzFormat]="dateFormat" [(ngModel)]="selectedDate" name="datePicker"
+                    (ngModelChange)="onRangePickerChange($event)" required></nz-range-picker>
+            </nz-form-control>
+        </div>
+        <div nz-col nzSpan="4">
+            <nz-form-control>
+                <input nz-input [(ngModel)]="reportRequestModel.merchant" name="merchantId"
+                    placeholder="Merchant Id" />
+            </nz-form-control>
+        </div>
+        <div nz-col nzSpan="4">
+            <nz-form-control>
+                <input nz-input [(ngModel)]="reportRequestModel.acquirer" name="acquirerId"
+                    placeholder="Acquirer Id" />
+            </nz-form-control>
+        </div>
+        <div nz-col nzSpan="2">
+            <nz-form-control>
+                <button nz-button nzType="primary" (click)="listReports()">Search</button>
+            </nz-form-control>
+        </div>
+    </div>
+</form>
+
+<nz-table #reportTable [nzFrontPagination]="false" [nzData]="reports" [nzLoading]="reportsLoading"
+    [nzTotal]="total" [(nzPageIndex)]="pageIndex" [(nzPageSize)]="pageSize" [nzScroll]="{ y: '440px' }">
+    <thead>
+        <tr>
+            <th nzWidth="200px">Count</th>
+            <th nzWidth="200px">Total</th>
+            <th>Currency</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let report of reports">
+            <td>{{ report?.count }}</td>
+            <td>{{ report?.total | currency:report?.currency }}</td>
+            <td>{{ report?.currency }}</td>
+        </tr>
+    </tbody>
+</nz-table>

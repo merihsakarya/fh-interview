@@ -1,0 +1,15 @@
+nz-select {
+    width: 100%;
+}
+
+.search-container {
+    margin-bottom: 20px;
+}
+
+.transaction-table button {
+    margin-right: 5px;
+}
+
+.search-buttons button {
+    margin-right: 10px;
+}

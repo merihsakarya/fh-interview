@@ -1,0 +1,38 @@
+<nz-layout class="app-layout">
+    <nz-sider class="menu-sidebar"
+        nzCollapsible
+        nzWidth="256px"
+        nzBreakpoint="md"
+        [(nzCollapsed)]="isCollapsed"
+        [nzTrigger]="null">
+        <app-sidebar [isCollapsed]="isCollapsed"></app-sidebar>
+    </nz-sider>
+    <nz-layout>
+        <nz-header class="app-header">
+            <div class="app-header-content">
+                <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
+                    <i class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"></i>
+                </span>
+
+                <div class="header-user-info">
+                    <span nz-dropdown [nzDropdownMenu]="menu">
+                        <nz-avatar nzIcon="user" nzSize="small"></nz-avatar>
+                        Merih Sakarya
+                    </span>
+                    <nz-dropdown-menu #menu="nzDropdownMenu">
+                        <ul nz-menu>
+                            <li nz-menu-item><i nz-icon nzType="user"></i>Profile</li>
+                            <li nz-menu-item (click)="logout()"><i nz-icon nzType="logout"></i>Log Out</li>
+                        </ul>
+                    </nz-dropdown-menu>
+                </div>
+                
+            </div>
+        </nz-header>
+        <nz-content class="app-content">
+            <div class="inner-content">
+                <router-outlet></router-outlet>
+            </div>
+        </nz-content>
+    </nz-layout>
+</nz-layout>

@@ -1,0 +1,17 @@
+/* You can add global styles to this file, and also import other style files */
+
+* {
+	outline: none;
+}
+
+app-default-layout {
+    width: 100%;
+}
+
+nz-spin {
+    min-height: 250px;
+}
+
+.back-button-container {
+    margin-bottom: 20px;
+}

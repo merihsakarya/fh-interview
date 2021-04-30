@@ -1,0 +1,31 @@
+<div nz-row nzType="flex" nzJustify="center" nzAlign="middle" class="login-wrapper">
+    <div nz-col>
+
+        <form nz-form [formGroup]="loginForm" nzLayout="vertical" class="login-form" (ngSubmit)="submitForm()">
+
+            <img src="assets/img/logo.png" class="login-logo" alt="logo">
+
+            <nz-form-item>
+                <nz-form-label nzFor="email">Email</nz-form-label>
+                <nz-form-control nzErrorTip="Enter a valid E-mail!">
+                    <nz-input-group nzSize="large" nzPrefixIcon="anticon anticon-user">
+                        <input type="email" nzSize="large" nz-input formControlName="userName" placeholder="Email">
+                    </nz-input-group>
+                </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item>
+                <nz-form-label nzFor="password">Password</nz-form-label>
+                <nz-form-control nzErrorTip="This field is required!">
+                    <nz-input-group nzSize="large" nzPrefixIcon="anticon anticon-lock">
+                        <input type="password" nzSize="large" nz-input formControlName="password"
+                            placeholder="Password">
+                    </nz-input-group>
+                </nz-form-control>
+            </nz-form-item>
+
+            <button nz-button nzSize="large" class="login-form-button" [nzType]="'primary'">Login</button>
+        </form>
+
+    </div>
+</div>

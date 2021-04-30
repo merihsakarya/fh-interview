@@ -1,0 +1,43 @@
+<div nz-row class="back-button-container">
+    <div nz-col>
+        <button class="back-button" nz-button nzType="default" [routerLink]="['/transactions']">
+            <i nz-icon nzType="left"></i> Back
+        </button>
+    </div>
+</div>
+
+<nz-divider nzText="Transaction Detail"></nz-divider>
+
+<nz-spin *ngIf="transactionLoading" [nzSpinning]="transactionLoading"></nz-spin>
+
+<ng-container *ngIf="!transactionLoading">
+    <nz-descriptions nzTitle="Customer Info">
+        <nz-descriptions-item nzTitle="Number">{{ transaction?.customerInfo?.number }}</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Email">{{ transaction?.customerInfo?.email }}</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Birth Date">{{ transaction?.customerInfo?.birthday | date:'dd/MM/yyyy' }}
+        </nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Gender">{{ transaction?.customerInfo?.gender }}</nz-descriptions-item>
+    </nz-descriptions>
+
+    <nz-descriptions nzTitle="Merchant">
+        <nz-descriptions-item nzTitle="Name">{{ transaction?.merchant?.name }}</nz-descriptions-item>
+    </nz-descriptions>
+
+    <nz-descriptions nzTitle="FX Merchant">
+        <nz-descriptions-item nzTitle="Original Amount">{{ transaction?.fx?.merchant?.originalAmount }}
+        </nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Original Currency">{{ transaction?.fx?.merchant?.originalCurrency }}
+        </nz-descriptions-item>
+    </nz-descriptions>
+
+    <nz-descriptions nzTitle="Transaction Merchant">
+        <nz-descriptions-item nzTitle="Transaction Id">{{ transaction?.transaction?.merchant?.transactionId }}
+        </nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Reference No">{{ transaction?.transaction?.merchant?.referenceNo }}
+        </nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Channel">{{ transaction?.transaction?.merchant?.channel }}</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Status">{{ transaction?.transaction?.merchant?.status }}</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Code">{{ transaction?.transaction?.merchant?.code }}</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Message">{{ transaction?.transaction?.merchant?.message }}</nz-descriptions-item>
+    </nz-descriptions>
+</ng-container>

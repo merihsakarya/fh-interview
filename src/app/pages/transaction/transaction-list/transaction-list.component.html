@@ -1,0 +1,69 @@
+<div nz-row nzGutter="16" class="search-container">
+    <div nz-col nzSpan="6">
+        <nz-range-picker ngModel [nzFormat]="dateFormat" (ngModelChange)="onRangePickerChange($event)"></nz-range-picker>
+    </div>
+    <div nz-col nzSpan="4">
+        <nz-select nzPlaceHolder="Choose Status" [(ngModel)]="transactionListRequestModel.status">
+            <nz-option *ngFor="let status of statuses" [nzLabel]="status.label" [nzValue]="status.key"></nz-option>
+        </nz-select>
+    </div>
+    <div nz-col nzSpan="4">
+        <nz-select nzPlaceHolder="Choose Operation" [(ngModel)]="transactionListRequestModel.operation">
+            <nz-option *ngFor="let operation of operations" [nzLabel]="operation.label" [nzValue]="operation.key">
+            </nz-option>
+        </nz-select>
+    </div>
+    <div nz-col nzSpan="10" class="search-buttons">
+        <button nz-button nzType="primary" (click)="listTransactions()">Search</button>
+        <button nz-button (click)="onAdvancedSearchChange(advancedForm)">
+            <i nz-icon [nzType]="isAdvancedSearch ? 'arrow-up' : 'arrow-down'"></i>Advanced Search
+        </button>
+    </div>
+</div>
+
+<form #advancedForm="ngForm" [hidden]="!isAdvancedSearch">
+    <div nz-row nzGutter="16" class="search-container">
+        <div nz-col nzSpan="6">
+            <nz-select name="paymentMethod" nzPlaceHolder="Choose Payment Method" [(ngModel)]="transactionListRequestModel.paymentMethod">
+                <nz-option *ngFor="let paymentMethod of paymentMethods" [nzLabel]="paymentMethod.label" [nzValue]="paymentMethod.key"></nz-option>
+            </nz-select>
+        </div>
+        <div nz-col nzSpan="4">
+            <input name="merchantId" nz-input [(ngModel)]="transactionListRequestModel.merchantId" placeholder="Merchant Id" />
+        </div>
+        <div nz-col nzSpan="4">
+            <input name="acquirerId" nz-input [(ngModel)]="transactionListRequestModel.acquirerId" placeholder="Acquirer Id" />
+        </div>
+    </div>
+</form>
+
+<nz-table #transactionTable [nzFrontPagination]="false" [nzData]="transactions" [nzLoading]="transactionsLoading"
+    [nzTotal]="total" [(nzPageIndex)]="pageIndex" [(nzPageSize)]="pageSize" [nzScroll]="{ y: '440px' }" class="transaction-table">
+    <thead>
+        <tr>
+            <th nzWidth="250px">Transaction Id</th>
+            <th nzWidth="250px">Name</th>
+            <th nzWidth="250px">Merchant Name</th>
+            <th>Acquirer</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let transaction of transactions">
+            <td>{{ transaction?.transaction?.merchant?.transactionId }}</td>
+            <td>{{ transaction?.customerInfo?.billingFirstName }} {{ transaction?.customerInfo?.billingLastName }}</td>
+            <td>{{ transaction?.merchant?.name }}</td>
+            <td>{{ transaction?.acquirer?.name }}</td>
+            <td align="right">  
+                <button nz-button nz-tooltip nzPlacement="top" nzTitle="Client Info"
+                    [routerLink]="['/clients', transaction?.transaction?.merchant?.transactionId]">
+                    <i nz-icon nzType="api"></i>
+                </button>
+                <button nz-button nz-tooltip nzPlacement="top" nzTitle="Detail"
+                    [routerLink]="['/transactions', transaction?.transaction?.merchant?.transactionId]">
+                    <i nz-icon nzType="search"></i>
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</nz-table>

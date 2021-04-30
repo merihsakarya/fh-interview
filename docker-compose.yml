@@ -1,0 +1,11 @@
+version: '3.5'
+
+services:
+  financial-house:
+    hostname: localhost
+    container_name: financial-house
+    image: financial-house:latest
+    build: .
+    ports:
+      - "80:80"
+    restart: always

@@ -1,0 +1,3 @@
+interface TransactionRequestModel {
+    transactionId: string;
+}

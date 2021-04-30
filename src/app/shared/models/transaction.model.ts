@@ -1,0 +1,3 @@
+interface TransactionModel {
+    merchant: TransactionMerchantModel;
+}

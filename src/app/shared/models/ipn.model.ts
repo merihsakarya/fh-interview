@@ -1,0 +1,3 @@
+interface IpnModel {
+    received: boolean;
+}
